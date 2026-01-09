@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aboubakrine Diallo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        ::selection {
+            background: #000;
+            color: #fff;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Syne', sans-serif;
+            background: #f2f0eb;
+            color: #0a0a0a;
+            font-size: 18px;
+            line-height: 1.6;
+        }
+        
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+        
+        /* NAV */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            mix-blend-mode: difference;
+        }
+        
+        nav, nav a {
+            color: #fff;
+        }
+        
+        .nav-name {
+            font-weight: 700;
+            font-size: 14px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            font-size: 14px;
+            font-family: 'Space Mono', monospace;
+        }
+        
+        .nav-links a {
+            position: relative;
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #fff;
+            transition: width 0.3s;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        /* HERO */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 120px 40px 80px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .hero-intro {
+            font-family: 'Space Mono', monospace;
+            font-size: 14px;
+            margin-bottom: 24px;
+            color: #666;
+        }
+        
+        .hero-title {
+            font-size: clamp(48px, 10vw, 120px);
+            font-weight: 800;
+            line-height: 0.95;
+            letter-spacing: -4px;
+            margin-bottom: 40px;
+        }
+        
+        .hero-title span {
+            display: block;
+        }
+        
+        .hero-title .outline {
+            -webkit-text-stroke: 2px #0a0a0a;
+            color: transparent;
+        }
+        
+        .hero-desc {
+            max-width: 500px;
+            font-size: 18px;
+            color: #444;
+            margin-bottom: 48px;
+        }
+        
+        .hero-cta {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 16px 32px;
+            font-family: 'Space Mono', monospace;
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: 2px solid #0a0a0a;
+            background: transparent;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .btn:hover {
+            background: #0a0a0a;
+            color: #f2f0eb;
+        }
+        
+        .btn-fill {
+            background: #0a0a0a;
+            color: #f2f0eb;
+        }
+        
+        .btn-fill:hover {
+            background: transparent;
+            color: #0a0a0a;
+        }
+        
+        /* SECTION */
+        section {
+            padding: 120px 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .section-label {
+            font-family: 'Space Mono', monospace;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: #888;
+            margin-bottom: 16px;
+        }
+        
+        .section-title {
+            font-size: clamp(32px, 5vw, 56px);
+            font-weight: 700;
+            letter-spacing: -2px;
+            margin-bottom: 64px;
+        }
+        
+        /* PROJECTS */
+        .projects-grid {
+            display: grid;
+            gap: 32px;
+        }
+        
+        .project {
+            border: 2px solid #0a0a0a;
+            background: #fff;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            overflow: hidden;
+            transition: transform 0.3s;
+        }
+        
+        .project:hover {
+            transform: translateY(-4px);
+        }
+        
+        .project-img {
+            aspect-ratio: 16/10;
+            background: #0a0a0a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .project-img::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(45deg, #0a0a0a 25%, #1a1a1a 25%, #1a1a1a 50%, #0a0a0a 50%, #0a0a0a 75%, #1a1a1a 75%);
+            background-size: 20px 20px;
+            opacity: 0.3;
+        }
+        
+        .project-img-text {
+            font-family: 'Space Mono', monospace;
+            color: #fff;
+            font-size: 48px;
+            font-weight: 700;
+            z-index: 1;
+            letter-spacing: -2px;
+        }
+        
+        .project-content {
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .project-year {
+            font-family: 'Space Mono', monospace;
+            font-size: 12px;
+            color: #888;
+            margin-bottom: 8px;
+        }
+        
+        .project-title {
+            font-size: 28px;
+            font-weight: 700;
+            letter-spacing: -1px;
+            margin-bottom: 16px;
+        }
+        
+        .project-desc {
+            color: #555;
+            font-size: 16px;
+            margin-bottom: 24px;
+            flex: 1;
+        }
+        
+        .project-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 24px;
+        }
+        
+        .project-stack span {
+            font-family: 'Space Mono', monospace;
+            font-size: 11px;
+            padding: 6px 12px;
+            border: 1.5px solid #ddd;
+            color: #666;
+        }
+        
+        .project-links {
+            display: flex;
+            gap: 16px;
+        }
+        
+        .project-link {
+            font-family: 'Space Mono', monospace;
+            font-size: 13px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .project-link:hover {
+            text-decoration: underline;
+        }
+        
+        /* ABOUT */
+        .about-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 80px;
+        }
+        
+        .about-text {
+            font-size: 20px;
+            color: #333;
+        }
+        
+        .about-text p {
+            margin-bottom: 24px;
+        }
+        
+        .about-details h3 {
+            font-family: 'Space Mono', monospace;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #888;
+            margin-bottom: 16px;
+            margin-top: 32px;
+        }
+        
+        .about-details h3:first-child {
+            margin-top: 0;
+        }
+        
+        .about-details ul {
+            list-style: none;
+        }
+        
+        .about-details li {
+            font-size: 15px;
+            padding: 6px 0;
+            border-bottom: 1px solid #e5e5e5;
+        }
+        
+        /* EXPERIENCE */
+        .exp-item {
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            gap: 40px;
+            padding: 40px 0;
+            border-bottom: 2px solid #0a0a0a;
+        }
+        
+        .exp-item:first-child {
+            border-top: 2px solid #0a0a0a;
+        }
+        
+        .exp-date {
+            font-family: 'Space Mono', monospace;
+            font-size: 13px;
+            color: #666;
+        }
+        
+        .exp-role {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+        
+        .exp-company {
+            color: #666;
+            margin-bottom: 16px;
+        }
+        
+        .exp-desc {
+            color: #555;
+            font-size: 16px;
+        }
+        
+        /* CONTACT */
+        .contact-section {
+            background: #0a0a0a;
+            color: #f2f0eb;
+            padding: 120px 40px;
+            margin: 0;
+            max-width: none;
+        }
+        
+        .contact-inner {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .contact-title {
+            font-size: clamp(40px, 8vw, 100px);
+            font-weight: 800;
+            letter-spacing: -4px;
+            line-height: 1;
+            margin-bottom: 48px;
+        }
+        
+        .contact-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 24px;
+        }
+        
+        .contact-link {
+            font-family: 'Space Mono', monospace;
+            font-size: 14px;
+            padding: 16px 24px;
+            border: 2px solid #f2f0eb;
+            transition: all 0.2s;
+        }
+        
+        .contact-link:hover {
+            background: #f2f0eb;
+            color: #0a0a0a;
+        }
+        
+        /* FOOTER */
+        footer {
+            background: #0a0a0a;
+            color: #666;
+            padding: 24px 40px;
+            font-family: 'Space Mono', monospace;
+            font-size: 12px;
+            text-align: center;
+            border-top: 1px solid #222;
+        }
+        
+        /* RESPONSIVE */
+        @media (max-width: 900px) {
+            .project {
+                grid-template-columns: 1fr;
+            }
+            
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 48px;
+            }
+            
+            .exp-item {
+                grid-template-columns: 1fr;
+                gap: 8px;
+            }
+        }
+        
+        @media (max-width: 600px) {
+            nav {
+                padding: 16px 24px;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .hero, section {
+                padding-left: 24px;
+                padding-right: 24px;
+            }
+            
+            .contact-section {
+                padding-left: 24px;
+                padding-right: 24px;
+            }
+            
+            .project-content {
+                padding: 24px;
+            }
+            
+            .hero-title {
+                letter-spacing: -2px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-name">Aboubakrine Diallo</div>
+        <div class="nav-links">
+            <a href="#projects">Projects</a>
+            <a href="#about">About</a>
+            <a href="#experience">Experience</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <p class="hero-intro">Software Engineering Student — Montreal, QC</p>
+        <h1 class="hero-title">
+            <span>Building</span>
+            <span class="outline">software</span>
+            <span>that works.</span>
+        </h1>
+        <p class="hero-desc">
+            I'm a developer who likes clean code, practical solutions, and 
+            projects that actually solve problems. Currently studying at UQAM 
+            and looking for Summer 2026 internship opportunities.
+        </p>
+        <div class="hero-cta">
+            <a href="#projects" class="btn btn-fill">View Projects</a>
+            <a href="#contact" class="btn">Get in Touch</a>
+        </div>
+    </section>
+
+    <section id="projects">
+        <p class="section-label">Selected Work</p>
+        <h2 class="section-title">Projects</h2>
+        
+        <div class="projects-grid">
+            <article class="project">
+                <div class="project-img">
+                    <span class="project-img-text">01</span>
+                </div>
+                <div class="project-content">
+                    <span class="project-year">2024</span>
+                    <h3 class="project-title">Auto Job Apply</h3>
+                    <p class="project-desc">
+                        Job application automation system. Tracks applications, scrapes job 
+                        postings from LinkedIn/Indeed/Glassdoor, and uses OpenAI to customize 
+                        resumes and cover letters for each position. Reduced manual application 
+                        workload by 85%.
+                    </p>
+                    <div class="project-stack">
+                        <span>Python</span>
+                        <span>Flask</span>
+                        <span>React</span>
+                        <span>OpenAI API</span>
+                        <span>SQLite</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://auto-job-apply-api.onrender.com" target="_blank" class="project-link">
+                            Live Demo →
+                        </a>
+                        <a href="https://github.com/strika-dev/auto-job-apply" target="_blank" class="project-link">
+                            GitHub →
+                        </a>
+                    </div>
+                </div>
+            </article>
+            
+            <article class="project">
+                <div class="project-img">
+                    <span class="project-img-text">02</span>
+                </div>
+                <div class="project-content">
+                    <span class="project-year">2024</span>
+                    <h3 class="project-title">Ophthalmology Clinic Management</h3>
+                    <p class="project-desc">
+                        Healthcare management software handling 500+ patient records. Features 
+                        appointment scheduling, medical history tracking, and optimized MySQL 
+                        queries achieving 40% faster data retrieval. Built with an agile team 
+                        of 4 developers.
+                    </p>
+                    <div class="project-stack">
+                        <span>Java</span>
+                        <span>Spring Boot</span>
+                        <span>MySQL</span>
+                        <span>REST API</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/strika-dev" target="_blank" class="project-link">
+                            GitHub →
+                        </a>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <section id="about">
+        <p class="section-label">Background</p>
+        <h2 class="section-title">About Me</h2>
+        
+        <div class="about-content">
+            <div class="about-text">
+                <p>
+                    I'm a Computer Science and Software Engineering student at UQAM, 
+                    expected to graduate in May 2026. I got into programming because I 
+                    wanted to build things that are useful, not just things that look good 
+                    on paper.
+                </p>
+                <p>
+                    I've worked in Scrum teams, done code reviews, and shipped features 
+                    that real people use. My internship at Socium in Dakar taught me how 
+                    enterprise software actually works — the good parts and the messy parts.
+                </p>
+                <p>
+                    When I'm not coding, I'm probably automating something that shouldn't 
+                    take more than 5 minutes but somehow does.
+                </p>
+            </div>
+            <div class="about-details">
+                <h3>Languages</h3>
+                <ul>
+                    <li>Python</li>
+                    <li>Java</li>
+                    <li>JavaScript</li>
+                    <li>C++</li>
+                    <li>SQL</li>
+                </ul>
+                
+                <h3>Technologies</h3>
+                <ul>
+                    <li>React</li>
+                    <li>Flask / Spring Boot</li>
+                    <li>REST APIs</li>
+                    <li>Docker</li>
+                    <li>AWS</li>
+                    <li>Git</li>
+                </ul>
+                
+                <h3>Currently</h3>
+                <ul>
+                    <li>Looking for Summer 2026 internship</li>
+                    <li>Based in Montreal, QC</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience">
+        <p class="section-label">Work History</p>
+        <h2 class="section-title">Experience</h2>
+        
+        <div class="exp-list">
+            <div class="exp-item">
+                <span class="exp-date">Oct 2024 — Jan 2025</span>
+                <div>
+                    <h3 class="exp-role">Software Engineer Intern</h3>
+                    <p class="exp-company">Socium — Dakar, Senegal</p>
+                    <p class="exp-desc">
+                        Developed HR management software, focusing on payroll and recruitment modules. 
+                        Optimized employee performance tracking, improving report loading time by 25%. 
+                        Participated in Scrum sprints, code reviews, and version control in a multi-developer team.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="exp-item">
+                <span class="exp-date">Apr 2023 — Oct 2023</span>
+                <div>
+                    <h3 class="exp-role">Vehicle Return Agent</h3>
+                    <p class="exp-company">Hertz Car Rentals — Montreal, QC</p>
+                    <p class="exp-desc">
+                        Processed 60+ vehicle returns daily using internal software. Handled basic 
+                        system troubleshooting and user assistance. Not a dev job, but taught me 
+                        how to work under pressure and deal with real users.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact-section" id="contact">
+        <div class="contact-inner">
+            <p class="section-label" style="color: #888;">Get in Touch</p>
+            <h2 class="contact-title">Let's talk.</h2>
+            <div class="contact-links">
+                <a href="mailto:aboubakrine02@gmail.com" class="contact-link">aboubakrine02@gmail.com</a>
+                <a href="https://github.com/strika-dev" target="_blank" class="contact-link">GitHub</a>
+                <a href="https://linkedin.com/in/" target="_blank" class="contact-link">LinkedIn</a>
+                <a href="tel:+14382766760" class="contact-link">+1 438-276-6760</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2024 Aboubakrine Diallo — Built from scratch, no templates.</p>
+    </footer>
+</body>
+</html>
