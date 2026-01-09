@@ -1,664 +1,957 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aboubakrine Diallo</title>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <title>:( Your PC ran into a problem</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect fill='%230078d7' width='100' height='100'/></svg>">
+    <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@200;400;600&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        @font-face {
+            font-family: 'Segoe UI';
+            src: local('Segoe UI');
         }
-        
-        ::selection {
-            background: #000;
-            color: #fff;
-        }
-        
-        html {
-            scroll-behavior: smooth;
-        }
-        
-        body {
-            font-family: 'Syne', sans-serif;
-            background: #f2f0eb;
-            color: #0a0a0a;
-            font-size: 18px;
-            line-height: 1.6;
-        }
-        
-        a {
-            color: inherit;
-            text-decoration: none;
-        }
-        
-        /* NAV */
-        nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 100;
-            padding: 20px 40px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            mix-blend-mode: difference;
-        }
-        
-        nav, nav a {
-            color: #fff;
-        }
-        
-        .nav-name {
-            font-weight: 700;
-            font-size: 14px;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-        }
-        
-        .nav-links {
-            display: flex;
-            gap: 32px;
-            font-size: 14px;
-            font-family: 'Space Mono', monospace;
-        }
-        
-        .nav-links a {
-            position: relative;
-        }
-        
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -4px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: #fff;
-            transition: width 0.3s;
-        }
-        
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-        
-        /* HERO */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            padding: 120px 40px 80px;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-        
-        .hero-intro {
-            font-family: 'Space Mono', monospace;
-            font-size: 14px;
-            margin-bottom: 24px;
-            color: #666;
-        }
-        
-        .hero-title {
-            font-size: clamp(48px, 10vw, 120px);
-            font-weight: 800;
-            line-height: 0.95;
-            letter-spacing: -4px;
-            margin-bottom: 40px;
-        }
-        
-        .hero-title span {
-            display: block;
-        }
-        
-        .hero-title .outline {
-            -webkit-text-stroke: 2px #0a0a0a;
-            color: transparent;
-        }
-        
-        .hero-desc {
-            max-width: 500px;
-            font-size: 18px;
-            color: #444;
-            margin-bottom: 48px;
-        }
-        
-        .hero-cta {
-            display: flex;
-            gap: 16px;
-            flex-wrap: wrap;
-        }
-        
-        .btn {
-            display: inline-block;
-            padding: 16px 32px;
-            font-family: 'Space Mono', monospace;
-            font-size: 13px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            border: 2px solid #0a0a0a;
-            background: transparent;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-        
-        .btn:hover {
-            background: #0a0a0a;
-            color: #f2f0eb;
-        }
-        
-        .btn-fill {
-            background: #0a0a0a;
-            color: #f2f0eb;
-        }
-        
-        .btn-fill:hover {
-            background: transparent;
-            color: #0a0a0a;
-        }
-        
-        /* SECTION */
-        section {
-            padding: 120px 40px;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-        
-        .section-label {
-            font-family: 'Space Mono', monospace;
-            font-size: 12px;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            color: #888;
-            margin-bottom: 16px;
-        }
-        
-        .section-title {
-            font-size: clamp(32px, 5vw, 56px);
-            font-weight: 700;
-            letter-spacing: -2px;
-            margin-bottom: 64px;
-        }
-        
-        /* PROJECTS */
-        .projects-grid {
-            display: grid;
-            gap: 32px;
-        }
-        
+
+```
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    
+    body {
+        font-family: 'Segoe UI', system-ui, sans-serif;
+        background: #0078d7;
+    }
+    
+    body.loaded {
+        background: #0a0a0a;
+        overflow-x: hidden;
+    }
+    
+    /* BSOD SCREEN */
+    .bsod {
+        position: fixed;
+        inset: 0;
+        background: #0078d7;
+        color: #fff;
+        padding: 10vh 10vw;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        z-index: 1000;
+        transition: opacity 0.8s, transform 0.8s;
+        overflow: hidden;
+    }
+    
+    .bsod.hidden {
+        opacity: 0;
+        transform: scale(1.1);
+        pointer-events: none;
+    }
+    
+    .bsod-frown {
+        font-size: 120px;
+        font-weight: 200;
+        margin-bottom: 24px;
+    }
+    
+    .bsod-title {
+        font-size: 28px;
+        font-weight: 400;
+        margin-bottom: 8px;
+    }
+    
+    .bsod-subtitle {
+        font-size: 16px;
+        font-weight: 400;
+        opacity: 0.9;
+        margin-bottom: 32px;
+        max-width: 600px;
+        line-height: 1.5;
+    }
+    
+    .bsod-percent {
+        font-size: 16px;
+        margin-bottom: 40px;
+    }
+    
+    .bsod-percent span {
+        display: inline-block;
+        min-width: 40px;
+    }
+    
+    .bsod-info {
+        display: flex;
+        align-items: flex-start;
+        gap: 24px;
+        margin-top: 40px;
+    }
+    
+    .bsod-qr {
+        width: 80px;
+        height: 80px;
+        background: #fff;
+        border-radius: 4px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #0078d7;
+        font-size: 10px;
+        text-align: center;
+        padding: 8px;
+    }
+    
+    .bsod-details {
+        font-size: 13px;
+        line-height: 1.7;
+        opacity: 0.9;
+    }
+    
+    .bsod-details a {
+        color: #fff;
+    }
+    
+    .bsod-stopcode {
+        margin-top: 24px;
+        font-size: 13px;
+    }
+    
+    .bsod-stopcode strong {
+        display: block;
+        margin-bottom: 4px;
+    }
+    
+    .glitch {
+        animation: glitch 0.3s infinite;
+    }
+    
+    @keyframes glitch {
+        0% { transform: translate(0); }
+        20% { transform: translate(-2px, 2px); }
+        40% { transform: translate(2px, -2px); }
+        60% { transform: translate(-2px, -2px); }
+        80% { transform: translate(2px, 2px); }
+        100% { transform: translate(0); }
+    }
+    
+    /* PORTFOLIO */
+    .portfolio {
+        min-height: 100vh;
+        background: #0a0a0a;
+        color: #e0e0e0;
+        opacity: 0;
+        transition: opacity 0.5s;
+    }
+    
+    .portfolio.visible {
+        opacity: 1;
+    }
+    
+    /* Header */
+    .header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        padding: 20px 48px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: rgba(10, 10, 10, 0.9);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid #222;
+    }
+    
+    .logo {
+        font-size: 14px;
+        font-weight: 600;
+        letter-spacing: 4px;
+        text-transform: uppercase;
+    }
+    
+    .logo span {
+        color: #0078d7;
+    }
+    
+    .nav {
+        display: flex;
+        gap: 32px;
+    }
+    
+    .nav a {
+        color: #888;
+        text-decoration: none;
+        font-size: 13px;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        transition: color 0.2s;
+    }
+    
+    .nav a:hover {
+        color: #fff;
+    }
+    
+    /* Hero */
+    .hero {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 120px 48px;
+        max-width: 1200px;
+        margin: 0 auto;
+        position: relative;
+    }
+    
+    .hero::before {
+        content: 'SYSTEM RESTORED';
+        position: absolute;
+        top: 100px;
+        left: 48px;
+        font-size: 11px;
+        letter-spacing: 3px;
+        color: #0078d7;
+        opacity: 0.5;
+    }
+    
+    .hero-label {
+        font-size: 12px;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        color: #666;
+        margin-bottom: 24px;
+    }
+    
+    .hero-name {
+        font-size: clamp(48px, 8vw, 96px);
+        font-weight: 600;
+        line-height: 1;
+        letter-spacing: -3px;
+        margin-bottom: 24px;
+    }
+    
+    .hero-name .blue {
+        color: #0078d7;
+    }
+    
+    .hero-title {
+        font-size: 24px;
+        color: #666;
+        font-weight: 400;
+        margin-bottom: 40px;
+    }
+    
+    .hero-desc {
+        max-width: 500px;
+        font-size: 16px;
+        line-height: 1.7;
+        color: #999;
+        margin-bottom: 48px;
+    }
+    
+    .hero-cta {
+        display: flex;
+        gap: 16px;
+    }
+    
+    .btn {
+        padding: 14px 32px;
+        font-size: 13px;
+        font-weight: 600;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        text-decoration: none;
+        border: 1px solid #333;
+        background: transparent;
+        color: #fff;
+        cursor: pointer;
+        transition: all 0.2s;
+    }
+    
+    .btn:hover {
+        background: #fff;
+        color: #0a0a0a;
+        border-color: #fff;
+    }
+    
+    .btn-primary {
+        background: #0078d7;
+        border-color: #0078d7;
+    }
+    
+    .btn-primary:hover {
+        background: #fff;
+        color: #0078d7;
+        border-color: #fff;
+    }
+    
+    /* Sections */
+    section {
+        padding: 120px 48px;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+    
+    .section-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        margin-bottom: 64px;
+        padding-bottom: 24px;
+        border-bottom: 1px solid #222;
+    }
+    
+    .section-label {
+        font-size: 11px;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        color: #0078d7;
+        margin-bottom: 8px;
+    }
+    
+    .section-title {
+        font-size: 32px;
+        font-weight: 600;
+        letter-spacing: -1px;
+    }
+    
+    .section-count {
+        font-size: 48px;
+        font-weight: 200;
+        color: #333;
+    }
+    
+    /* Projects */
+    .projects-grid {
+        display: grid;
+        gap: 24px;
+    }
+    
+    .project {
+        background: #111;
+        border: 1px solid #222;
+        padding: 40px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 48px;
+        transition: border-color 0.2s;
+    }
+    
+    .project:hover {
+        border-color: #0078d7;
+    }
+    
+    .project-visual {
+        background: #0a0a0a;
+        border: 1px solid #222;
+        aspect-ratio: 16/10;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .project-visual::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: 
+            linear-gradient(90deg, #111 1px, transparent 1px),
+            linear-gradient(#111 1px, transparent 1px);
+        background-size: 20px 20px;
+        opacity: 0.3;
+    }
+    
+    .project-num {
+        font-size: 64px;
+        font-weight: 200;
+        color: #0078d7;
+        z-index: 1;
+    }
+    
+    .project-content {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .project-year {
+        font-size: 12px;
+        color: #666;
+        letter-spacing: 2px;
+        margin-bottom: 12px;
+    }
+    
+    .project-name {
+        font-size: 24px;
+        font-weight: 600;
+        margin-bottom: 16px;
+    }
+    
+    .project-desc {
+        color: #888;
+        font-size: 15px;
+        line-height: 1.7;
+        margin-bottom: 24px;
+        flex: 1;
+    }
+    
+    .project-stack {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-bottom: 24px;
+    }
+    
+    .project-stack span {
+        font-size: 11px;
+        padding: 6px 12px;
+        background: #1a1a1a;
+        border: 1px solid #333;
+        color: #888;
+        letter-spacing: 1px;
+    }
+    
+    .project-links {
+        display: flex;
+        gap: 24px;
+    }
+    
+    .project-links a {
+        font-size: 13px;
+        color: #0078d7;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+    
+    .project-links a:hover {
+        text-decoration: underline;
+    }
+    
+    /* Stats */
+    .stats {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 24px;
+        margin: 120px auto;
+        padding: 0 48px;
+        max-width: 1200px;
+    }
+    
+    .stat {
+        text-align: center;
+        padding: 40px;
+        border: 1px solid #222;
+        background: #111;
+    }
+    
+    .stat-value {
+        font-size: 48px;
+        font-weight: 600;
+        color: #0078d7;
+        margin-bottom: 8px;
+    }
+    
+    .stat-label {
+        font-size: 12px;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: #666;
+    }
+    
+    /* Experience */
+    .exp-list {
+        border-top: 1px solid #222;
+    }
+    
+    .exp-item {
+        display: grid;
+        grid-template-columns: 200px 1fr;
+        gap: 48px;
+        padding: 40px 0;
+        border-bottom: 1px solid #222;
+    }
+    
+    .exp-date {
+        font-size: 13px;
+        color: #666;
+        letter-spacing: 1px;
+    }
+    
+    .exp-role {
+        font-size: 20px;
+        font-weight: 600;
+        margin-bottom: 4px;
+    }
+    
+    .exp-company {
+        color: #0078d7;
+        font-size: 14px;
+        margin-bottom: 16px;
+    }
+    
+    .exp-desc {
+        color: #888;
+        font-size: 15px;
+        line-height: 1.7;
+        max-width: 600px;
+    }
+    
+    /* Skills */
+    .skills-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+    }
+    
+    .skill-group {
+        background: #111;
+        border: 1px solid #222;
+        padding: 32px;
+    }
+    
+    .skill-group-title {
+        font-size: 11px;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: #0078d7;
+        margin-bottom: 20px;
+    }
+    
+    .skill-list {
+        list-style: none;
+    }
+    
+    .skill-list li {
+        padding: 8px 0;
+        border-bottom: 1px solid #1a1a1a;
+        font-size: 14px;
+        color: #999;
+    }
+    
+    .skill-list li:last-child {
+        border-bottom: none;
+    }
+    
+    /* Contact */
+    .contact {
+        text-align: center;
+        padding: 160px 48px;
+        border-top: 1px solid #222;
+    }
+    
+    .contact-label {
+        font-size: 11px;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        color: #0078d7;
+        margin-bottom: 24px;
+    }
+    
+    .contact-title {
+        font-size: clamp(32px, 5vw, 56px);
+        font-weight: 600;
+        letter-spacing: -2px;
+        margin-bottom: 24px;
+    }
+    
+    .contact-subtitle {
+        color: #666;
+        font-size: 18px;
+        margin-bottom: 48px;
+    }
+    
+    .contact-links {
+        display: flex;
+        justify-content: center;
+        gap: 24px;
+        flex-wrap: wrap;
+    }
+    
+    .contact-link {
+        padding: 16px 32px;
+        border: 1px solid #333;
+        color: #fff;
+        text-decoration: none;
+        font-size: 14px;
+        transition: all 0.2s;
+    }
+    
+    .contact-link:hover {
+        background: #0078d7;
+        border-color: #0078d7;
+    }
+    
+    /* Footer */
+    footer {
+        padding: 24px 48px;
+        border-top: 1px solid #222;
+        text-align: center;
+        font-size: 12px;
+        color: #444;
+    }
+    
+    footer span {
+        color: #0078d7;
+    }
+    
+    /* Terminal cursor */
+    .cursor {
+        display: inline-block;
+        width: 2px;
+        height: 1em;
+        background: #0078d7;
+        margin-left: 4px;
+        animation: blink 1s infinite;
+    }
+    
+    @keyframes blink {
+        0%, 50% { opacity: 1; }
+        51%, 100% { opacity: 0; }
+    }
+    
+    /* Responsive */
+    @media (max-width: 900px) {
         .project {
-            border: 2px solid #0a0a0a;
-            background: #fff;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            overflow: hidden;
-            transition: transform 0.3s;
+            grid-template-columns: 1fr;
         }
         
-        .project:hover {
-            transform: translateY(-4px);
+        .stats {
+            grid-template-columns: repeat(2, 1fr);
         }
         
-        .project-img {
-            aspect-ratio: 16/10;
-            background: #0a0a0a;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 40px;
-            position: relative;
-            overflow: hidden;
+        .skills-grid {
+            grid-template-columns: 1fr;
         }
         
-        .project-img::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(45deg, #0a0a0a 25%, #1a1a1a 25%, #1a1a1a 50%, #0a0a0a 50%, #0a0a0a 75%, #1a1a1a 75%);
-            background-size: 20px 20px;
-            opacity: 0.3;
+        .exp-item {
+            grid-template-columns: 1fr;
+            gap: 8px;
         }
         
-        .project-img-text {
-            font-family: 'Space Mono', monospace;
-            color: #fff;
-            font-size: 48px;
-            font-weight: 700;
-            z-index: 1;
-            letter-spacing: -2px;
+        .header, .hero, section, .stats {
+            padding-left: 24px;
+            padding-right: 24px;
+        }
+    }
+    
+    @media (max-width: 600px) {
+        .nav {
+            display: none;
         }
         
-        .project-content {
-            padding: 40px;
-            display: flex;
+        .bsod {
+            padding: 5vh 5vw;
+        }
+        
+        .bsod-frown {
+            font-size: 80px;
+        }
+        
+        .bsod-info {
             flex-direction: column;
         }
         
-        .project-year {
-            font-family: 'Space Mono', monospace;
-            font-size: 12px;
-            color: #888;
-            margin-bottom: 8px;
+        .stats {
+            grid-template-columns: 1fr;
         }
-        
-        .project-title {
-            font-size: 28px;
-            font-weight: 700;
-            letter-spacing: -1px;
-            margin-bottom: 16px;
-        }
-        
-        .project-desc {
-            color: #555;
-            font-size: 16px;
-            margin-bottom: 24px;
-            flex: 1;
-        }
-        
-        .project-stack {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-bottom: 24px;
-        }
-        
-        .project-stack span {
-            font-family: 'Space Mono', monospace;
-            font-size: 11px;
-            padding: 6px 12px;
-            border: 1.5px solid #ddd;
-            color: #666;
-        }
-        
-        .project-links {
-            display: flex;
-            gap: 16px;
-        }
-        
-        .project-link {
-            font-family: 'Space Mono', monospace;
-            font-size: 13px;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        
-        .project-link:hover {
-            text-decoration: underline;
-        }
-        
-        /* ABOUT */
-        .about-content {
-            display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: 80px;
-        }
-        
-        .about-text {
-            font-size: 20px;
-            color: #333;
-        }
-        
-        .about-text p {
-            margin-bottom: 24px;
-        }
-        
-        .about-details h3 {
-            font-family: 'Space Mono', monospace;
-            font-size: 12px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: #888;
-            margin-bottom: 16px;
-            margin-top: 32px;
-        }
-        
-        .about-details h3:first-child {
-            margin-top: 0;
-        }
-        
-        .about-details ul {
-            list-style: none;
-        }
-        
-        .about-details li {
-            font-size: 15px;
-            padding: 6px 0;
-            border-bottom: 1px solid #e5e5e5;
-        }
-        
-        /* EXPERIENCE */
-        .exp-item {
-            display: grid;
-            grid-template-columns: 200px 1fr;
-            gap: 40px;
-            padding: 40px 0;
-            border-bottom: 2px solid #0a0a0a;
-        }
-        
-        .exp-item:first-child {
-            border-top: 2px solid #0a0a0a;
-        }
-        
-        .exp-date {
-            font-family: 'Space Mono', monospace;
-            font-size: 13px;
-            color: #666;
-        }
-        
-        .exp-role {
-            font-size: 24px;
-            font-weight: 700;
-            margin-bottom: 4px;
-        }
-        
-        .exp-company {
-            color: #666;
-            margin-bottom: 16px;
-        }
-        
-        .exp-desc {
-            color: #555;
-            font-size: 16px;
-        }
-        
-        /* CONTACT */
-        .contact-section {
-            background: #0a0a0a;
-            color: #f2f0eb;
-            padding: 120px 40px;
-            margin: 0;
-            max-width: none;
-        }
-        
-        .contact-inner {
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-        
-        .contact-title {
-            font-size: clamp(40px, 8vw, 100px);
-            font-weight: 800;
-            letter-spacing: -4px;
-            line-height: 1;
-            margin-bottom: 48px;
-        }
-        
-        .contact-links {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 24px;
-        }
-        
-        .contact-link {
-            font-family: 'Space Mono', monospace;
-            font-size: 14px;
-            padding: 16px 24px;
-            border: 2px solid #f2f0eb;
-            transition: all 0.2s;
-        }
-        
-        .contact-link:hover {
-            background: #f2f0eb;
-            color: #0a0a0a;
-        }
-        
-        /* FOOTER */
-        footer {
-            background: #0a0a0a;
-            color: #666;
-            padding: 24px 40px;
-            font-family: 'Space Mono', monospace;
-            font-size: 12px;
-            text-align: center;
-            border-top: 1px solid #222;
-        }
-        
-        /* RESPONSIVE */
-        @media (max-width: 900px) {
-            .project {
-                grid-template-columns: 1fr;
-            }
-            
-            .about-content {
-                grid-template-columns: 1fr;
-                gap: 48px;
-            }
-            
-            .exp-item {
-                grid-template-columns: 1fr;
-                gap: 8px;
-            }
-        }
-        
-        @media (max-width: 600px) {
-            nav {
-                padding: 16px 24px;
-            }
-            
-            .nav-links {
-                display: none;
-            }
-            
-            .hero, section {
-                padding-left: 24px;
-                padding-right: 24px;
-            }
-            
-            .contact-section {
-                padding-left: 24px;
-                padding-right: 24px;
-            }
-            
-            .project-content {
-                padding: 24px;
-            }
-            
-            .hero-title {
-                letter-spacing: -2px;
-            }
-        }
-    </style>
+    }
+</style>
+```
+
 </head>
 <body>
-    <nav>
-        <div class="nav-name">Aboubakrine Diallo</div>
-        <div class="nav-links">
-            <a href="#projects">Projects</a>
-            <a href="#about">About</a>
-            <a href="#experience">Experience</a>
-            <a href="#contact">Contact</a>
+    <!-- BSOD SCREEN -->
+    <div class="bsod" id="bsod">
+        <div class="bsod-frown">:(</div>
+        <div class="bsod-title">Your hiring process ran into a problem.</div>
+        <div class="bsod-subtitle">
+            A critical talent has been detected but not yet acquired. 
+            This candidate needs to be collected before your team can restart 
+            normal operations.
         </div>
-    </nav>
+        <div class="bsod-percent"><span id="percent">0</span>% complete</div>
+
+```
+    <div class="bsod-info">
+        <div class="bsod-qr">
+            SCAN TO<br>HIRE
+        </div>
+        <div class="bsod-details">
+            For more info about this candidate and possible solutions, visit:<br>
+            <a href="mailto:aboubakrine02@gmail.com">aboubakrine02@gmail.com</a><br><br>
+            
+            If you call a recruiter, give them this info:<br>
+            Candidate: ABOUBAKRINE DIALLO<br>
+            Location: MONTREAL, QC<br>
+            Status: AVAILABLE_SUMMER_2026
+            
+            <div class="bsod-stopcode">
+                <strong>Stop code: DEVELOPER_NOT_HIRED</strong>
+                Reference: github.com/strika-dev
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- PORTFOLIO -->
+<div class="portfolio" id="portfolio">
+    <header class="header">
+        <div class="logo">Aboubakrine<span>.</span></div>
+        <nav class="nav">
+            <a href="#projects">Projects</a>
+            <a href="#experience">Experience</a>
+            <a href="#skills">Skills</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
 
     <section class="hero">
-        <p class="hero-intro">Software Engineering Student — Montreal, QC</p>
-        <h1 class="hero-title">
-            <span>Building</span>
-            <span class="outline">software</span>
-            <span>that works.</span>
+        <div class="hero-label">Software Engineer · Montreal</div>
+        <h1 class="hero-name">
+            Aboubakrine<br>
+            <span class="blue">Diallo</span><span class="cursor"></span>
         </h1>
+        <p class="hero-title">I build software that solves problems.</p>
         <p class="hero-desc">
-            I'm a developer who likes clean code, practical solutions, and 
-            projects that actually solve problems. Currently studying at UQAM 
-            and looking for internship opportunities.
+            Computer Science student at UQAM. I like clean code, practical solutions, 
+            and automating things that shouldn't take more than 5 minutes. 
+            Currently seeking Summer 2026 internship opportunities.
         </p>
         <div class="hero-cta">
-            <a href="#projects" class="btn btn-fill">View Projects</a>
-            <a href="#contact" class="btn">Get in Touch</a>
+            <a href="#projects" class="btn btn-primary">View Projects</a>
+            <a href="mailto:aboubakrine02@gmail.com" class="btn">Contact Me</a>
         </div>
     </section>
 
+    <div class="stats">
+        <div class="stat">
+            <div class="stat-value">4</div>
+            <div class="stat-label">Projects</div>
+        </div>
+        <div class="stat">
+            <div class="stat-value">85%</div>
+            <div class="stat-label">Automation Rate</div>
+        </div>
+        <div class="stat">
+            <div class="stat-value">500+</div>
+            <div class="stat-label">Records Managed</div>
+        </div>
+        <div class="stat">
+            <div class="stat-value">2026</div>
+            <div class="stat-label">Graduation</div>
+        </div>
+    </div>
+
     <section id="projects">
-        <p class="section-label">Selected Work</p>
-        <h2 class="section-title">Projects</h2>
-        
+        <div class="section-header">
+            <div>
+                <div class="section-label">Selected Work</div>
+                <h2 class="section-title">Projects</h2>
+            </div>
+            <div class="section-count">02</div>
+        </div>
+
         <div class="projects-grid">
             <article class="project">
-                <div class="project-img">
-                    <span class="project-img-text">01</span>
+                <div class="project-visual">
+                    <span class="project-num">01</span>
                 </div>
                 <div class="project-content">
-                    <span class="project-year">2025</span>
-                    <h3 class="project-title">Auto Job Apply</h3>
+                    <div class="project-year">2024</div>
+                    <h3 class="project-name">Auto Job Apply</h3>
                     <p class="project-desc">
-                        Job application automation system. Tracks applications, scrapes job 
-                        postings from LinkedIn/Indeed/Glassdoor, and uses OpenAI to customize 
-                        resumes and cover letters for each position.
+                        Job application automation system. Tracks applications, scrapes postings 
+                        from LinkedIn/Indeed/Glassdoor, and uses OpenAI to customize resumes 
+                        and cover letters. Reduced manual workload by 85%.
                     </p>
                     <div class="project-stack">
                         <span>Python</span>
                         <span>Flask</span>
                         <span>React</span>
-                        <span>OpenAI API</span>
+                        <span>OpenAI</span>
                         <span>SQLite</span>
                     </div>
                     <div class="project-links">
-                        <a href="https://auto-job-apply-api.onrender.com" target="_blank" class="project-link">
-                            Live Demo →
-                        </a>
-                        <a href="https://github.com/strika-dev/auto-job-apply" target="_blank" class="project-link">
-                            GitHub →
-                        </a>
+                        <a href="https://auto-job-apply-api.onrender.com" target="_blank">Live Demo →</a>
+                        <a href="https://github.com/strika-dev/auto-job-apply" target="_blank">Source →</a>
                     </div>
                 </div>
             </article>
-            
+
             <article class="project">
-                <div class="project-img">
-                    <span class="project-img-text">02</span>
+                <div class="project-visual">
+                    <span class="project-num">02</span>
                 </div>
                 <div class="project-content">
-                    <span class="project-year">2024</span>
-                    <h3 class="project-title">Budget App</h3>
+                    <div class="project-year">2024</div>
+                    <h3 class="project-name">Ophthalmology Clinic Management</h3>
                     <p class="project-desc">
-                        A simple and elegant web application to track your personal finances. Monitor your income, expenses, and savings all in one place
+                        Healthcare management software handling 500+ patient records. 
+                        Appointment scheduling, medical history tracking, and optimized 
+                        MySQL queries achieving 40% faster data retrieval.
                     </p>
                     <div class="project-stack">
-                        <span>React</span>
-                        <span>Vite</span>
-                        <span>SVG</span>
-                        <span>HTML</span>
-                        <span>CSS</span>
-                        <span>Javascript</span>
+                        <span>Java</span>
+                        <span>Spring Boot</span>
+                        <span>MySQL</span>
+                        <span>REST API</span>
                     </div>
                     <div class="project-links">
-                        <a href="https://budget-app-aboubakrine.vercel.app/" target="_blank" class="project-link">
-                            Live Demo →
-                        </a>
-                        <a href="https://github.com/strika-dev/budget-app" target="_blank" class="project-link">
-                            GitHub →
-                        </a>
+                        <a href="https://github.com/strika-dev" target="_blank">Source →</a>
                     </div>
                 </div>
             </article>
         </div>
     </section>
 
-    <section id="about">
-        <p class="section-label">Background</p>
-        <h2 class="section-title">About Me</h2>
-        
-        <div class="about-content">
-            <div class="about-text">
-                <p>
-                    I'm a Computer Science and Software Engineering student at UQAM, 
-                    expected to graduate in 2026. I got into programming because I 
-                    wanted to build things that are useful, not just things that look good 
-                    on paper.
-                </p>
-                <p>
-                    I've worked in Scrum teams, done code reviews, and shipped features 
-                    that real people use. My internship at Socium in Dakar taught me how 
-                    softwares actually work — the good parts and the messy parts.
-                </p>
-                <p>
-                    When I'm not coding, I'm probably playing soccer or video games.
-                </p>
+    <section id="experience">
+        <div class="section-header">
+            <div>
+                <div class="section-label">Work History</div>
+                <h2 class="section-title">Experience</h2>
             </div>
-            <div class="about-details">
-                <h3>Languages</h3>
-                <ul>
+            <div class="section-count">02</div>
+        </div>
+
+        <div class="exp-list">
+            <div class="exp-item">
+                <div class="exp-date">Oct 2024 — Jan 2025</div>
+                <div>
+                    <h3 class="exp-role">Software Engineer Intern</h3>
+                    <div class="exp-company">Socium · Dakar, Senegal</div>
+                    <p class="exp-desc">
+                        Developed HR management software (payroll, recruitment modules). 
+                        Optimized employee performance tracking, improving report loading time by 25%. 
+                        Participated in Scrum sprints, code reviews, and version control.
+                    </p>
+                </div>
+            </div>
+            <div class="exp-item">
+                <div class="exp-date">Apr 2023 — Oct 2023</div>
+                <div>
+                    <h3 class="exp-role">Vehicle Return Agent</h3>
+                    <div class="exp-company">Hertz Car Rentals · Montreal, QC</div>
+                    <p class="exp-desc">
+                        Processed 60+ vehicle returns daily using internal software. 
+                        Basic system troubleshooting and user assistance. Not a dev job, 
+                        but taught me how to work under pressure and deal with real users.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills">
+        <div class="section-header">
+            <div>
+                <div class="section-label">Technical Stack</div>
+                <h2 class="section-title">Skills</h2>
+            </div>
+        </div>
+
+        <div class="skills-grid">
+            <div class="skill-group">
+                <div class="skill-group-title">Languages</div>
+                <ul class="skill-list">
                     <li>Python</li>
                     <li>Java</li>
                     <li>JavaScript</li>
                     <li>C++</li>
                     <li>SQL</li>
                 </ul>
-                
-                <h3>Technologies</h3>
-                <ul>
+            </div>
+            <div class="skill-group">
+                <div class="skill-group-title">Frameworks</div>
+                <ul class="skill-list">
                     <li>React</li>
-                    <li>Flask / Spring Boot</li>
+                    <li>Flask</li>
+                    <li>Spring Boot</li>
                     <li>REST APIs</li>
+                    <li>HTML/CSS</li>
+                </ul>
+            </div>
+            <div class="skill-group">
+                <div class="skill-group-title">Tools</div>
+                <ul class="skill-list">
+                    <li>Git / GitHub</li>
                     <li>Docker</li>
                     <li>AWS</li>
-                    <li>Git</li>
-                </ul>
-                
-                <h3>Currently</h3>
-                <ul>
-                    <li>Looking for internships</li>
-                    <li>Based in Montreal, QC</li>
+                    <li>Linux</li>
+                    <li>MySQL / SQLite</li>
                 </ul>
             </div>
         </div>
     </section>
 
-    <section id="experience">
-        <p class="section-label">Work History</p>
-        <h2 class="section-title">Experience</h2>
-        
-        <div class="exp-list">
-            <div class="exp-item">
-                <span class="exp-date">Oct 2024 — Jan 2025</span>
-                <div>
-                    <h3 class="exp-role">Software Engineer Intern</h3>
-                    <p class="exp-company">Socium — Dakar, Senegal</p>
-                    <p class="exp-desc">
-                        Developed HR management software, focusing on payroll and recruitment modules. 
-                        Optimized employee performance tracking, improving report loading time by 25%. 
-                        Participated in Scrum sprints, code reviews, and version control in a multi-developer team.
-                    </p>
-                </div>
-            </div>
-            
-            <div class="exp-item">
-                <span class="exp-date">Apr 2023 — Oct 2024</span>
-                <div>
-                    <h3 class="exp-role">Vehicle Return Agent</h3>
-                    <p class="exp-company">Hertz Car Rentals — Montreal, QC</p>
-                    <p class="exp-desc">
-                        Processed 60+ vehicle returns daily using internal software. Handled basic 
-                        system troubleshooting and user assistance. Not a dev job, but taught me 
-                        how to work under pressure and deal with real users.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="contact-section" id="contact">
-        <div class="contact-inner">
-            <p class="section-label" style="color: #888;">Get in Touch</p>
-            <h2 class="contact-title">Let's talk.</h2>
-            <div class="contact-links">
-                <a href="mailto:aboubakrine02@gmail.com" class="contact-link">aboubakrine02@gmail.com</a>
-                <a href="https://github.com/strika-dev" target="_blank" class="contact-link">GitHub</a>
-                <a href="https://linkedin.com/in/" target="_blank" class="contact-link">LinkedIn</a>
-                <a href="tel:+14382766760" class="contact-link">+1 438-276-6760</a>
-            </div>
+    <section class="contact" id="contact">
+        <div class="contact-label">Get in Touch</div>
+        <h2 class="contact-title">Let's fix that error.</h2>
+        <p class="contact-subtitle">Available for Summer 2026 internships. Montreal or Remote.</p>
+        <div class="contact-links">
+            <a href="mailto:aboubakrine02@gmail.com" class="contact-link">aboubakrine02@gmail.com</a>
+            <a href="https://github.com/strika-dev" target="_blank" class="contact-link">GitHub</a>
+            <a href="https://linkedin.com/in/" target="_blank" class="contact-link">LinkedIn</a>
+            <a href="tel:+14382766760" class="contact-link">+1 438-276-6760</a>
         </div>
     </section>
 
     <footer>
-        <p>© 2025 Aboubakrine Diallo</p>
+        <p>© 2024 Aboubakrine Diallo · <span>SYSTEM_RESTORED</span> · Built from scratch</p>
     </footer>
+</div>
+
+<script>
+    // BSOD Animation
+    const bsod = document.getElementById('bsod');
+    const portfolio = document.getElementById('portfolio');
+    const percentEl = document.getElementById('percent');
+    
+    let percent = 0;
+    let hasStarted = false;
+    
+    // Start on click or touch
+    document.addEventListener('click', startAnimation);
+    document.addEventListener('touchstart', startAnimation);
+    document.addEventListener('keydown', startAnimation);
+    
+    function startAnimation() {
+        if (hasStarted) return;
+        hasStarted = true;
+        
+        const interval = setInterval(() => {
+            percent += Math.floor(Math.random() * 15) + 5;
+            if (percent >= 100) {
+                percent = 100;
+                percentEl.textContent = percent;
+                clearInterval(interval);
+                
+                setTimeout(() => {
+                    bsod.classList.add('glitch');
+                    setTimeout(() => {
+                        bsod.classList.remove('glitch');
+                        bsod.classList.add('hidden');
+                        portfolio.classList.add('visible');
+                        document.body.classList.add('loaded');
+                    }, 300);
+                }, 500);
+            } else {
+                percentEl.textContent = percent;
+            }
+        }, 200);
+    }
+    
+    // Auto-start after 3 seconds if no interaction
+    setTimeout(() => {
+        if (!hasStarted) startAnimation();
+    }, 3000);
+</script>
+```
+
 </body>
 </html>
